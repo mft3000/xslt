@@ -1,0 +1,1751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cisco-ios-xr="http://tail-f.com/ned/cisco-ios-xr" xmlns:ncs="http://tail-f.com/ns/ncs" xmlns:x="http://tail-f.com/ned/cisco-ios-xr" xmlns:i="urn:ios" xmlns:n="http://tail-f.com/ned/cisco-nx" xmlns:j="http://xml.juniper.net/xnm/1.1/xnm" version="1.0">
+<xsl:template match="/">
+<!-- <style>.refcounter { color: blue; }</style> -->
+<table border="1">
+    <thead>
+    <tr bgcolor="#9acd32">
+        <th></th>
+        <th style="text-align:left" id="device">device</th>
+        <th style="text-align:left" id="afi">afi</th>
+        <th style="text-align:left" id="safi">safi</th>
+        <th style="text-align:left" id="vrf">vrf</th>
+        <th style="text-align:left" id="netMask">netMask</th>
+        <th style="text-align:left" id="nh">nh</th>
+        <th style="text-align:left" id="metric">metric</th>
+        <th style="text-align:left" id="tag">tag</th>
+        <th style="text-align:left" id="description">description</th>
+    </tr>  
+</thead>
+
+<tbody>
+<xsl:for-each select="//*/ncs:devices/ncs:device">
+        <xsl:variable name="dev" select="ncs:name" />
+
+        <!-- xr -->
+        <xsl:for-each select="ncs:config/x:router/x:static">
+
+                <xsl:for-each select="x:address-family">
+
+                    <xsl:for-each select="x:ipv4/x:unicast/x:routes-ip">
+                        <tr class="">
+                            <xsl:attribute name="id">
+                                <xsl:value-of select="$dev" />
+                            </xsl:attribute>
+                            <xsl:attribute name="class">
+                                <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                            </xsl:attribute>
+                        <td><input type="radio" name="check" id="check"></input></td>
+                        <td>
+                            <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                            <xsl:value-of select="$dev" />
+                        </td>
+                        <td>ipv4 (1)</td>
+                        <td>unicast (1)</td>
+                        <td></td>
+                            <td >
+                                <xsl:if test="x:net[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:net" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:address[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:address" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:metric[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:metric" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:tag[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:tag" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:description[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:description" />
+                            </td>
+                        </tr>
+                        </xsl:for-each>
+                    <xsl:for-each select="x:ipv4/x:unicast/x:routes-if">
+                        <tr class="">
+                            <xsl:attribute name="id">
+                                <xsl:value-of select="$dev" />
+                            </xsl:attribute>
+                            <xsl:attribute name="class">
+                                <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                            </xsl:attribute>
+                        <td><input type="radio" name="check" id="check"></input></td>
+                        <td>
+                            <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                            <xsl:value-of select="$dev" />
+                        </td>
+                        <td>ipv4 (1)</td>
+                        <td>unicast (1)</td>
+                        <td></td>
+                            <td >
+                                <xsl:if test="x:net[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:net" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:iterface[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:interface" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:metric[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:metric" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:tag[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:tag" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:description[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:description" />
+                            </td>
+                        </tr>
+                        </xsl:for-each>
+
+                    <xsl:for-each select="x:ipv6/x:unicast/x:routes-ip">
+                        <tr class="">
+                            <xsl:attribute name="id">
+                                <xsl:value-of select="$dev" />
+                            </xsl:attribute>
+                            <xsl:attribute name="class">
+                                <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                            </xsl:attribute>
+                        <td><input type="radio" name="check" id="check"></input></td>
+                        <td>
+                            <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                            <xsl:value-of select="$dev" />
+                        </td>                        <td>ipv6 (2)</td>
+                        <td>unicast (1)</td>
+                        <td></td>
+                            <td >
+                                <xsl:if test="x:net[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:net" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:address[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:address" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:metric[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:metric" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:tag[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:tag" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:description[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:description" />
+                            </td>
+                        </tr>
+                        </xsl:for-each>
+                    <xsl:for-each select="x:ipv6/x:unicast/x:routes-if">
+                        <tr class="">
+                            <xsl:attribute name="id">
+                                <xsl:value-of select="$dev" />
+                            </xsl:attribute>
+                            <xsl:attribute name="class">
+                                <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                            </xsl:attribute>
+                        <td><input type="radio" name="check" id="check"></input></td>
+                        <td>
+                            <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                            <xsl:value-of select="$dev" />
+                        </td>                        <td>ipv6 (2)</td>
+                        <td>unicast (1)</td>
+                        <td></td>
+                            <td >
+                                <xsl:if test="x:net[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:net" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:interface[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:interface" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:metric[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:metric" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:tag[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:tag" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:description[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:description" />
+                            </td>
+                        </tr>
+                        </xsl:for-each>
+                </xsl:for-each>
+
+                <xsl:for-each select="x:vrf">
+                    <xsl:variable name="vrfName" select="x:name" />
+                    
+                    <xsl:for-each select="x:address-family">
+                        <xsl:for-each select="x:ipv4/x:unicast/x:routes-ip">
+                            <tr class="">
+                                <xsl:attribute name="id">
+                                    <xsl:value-of select="$dev" />
+                                </xsl:attribute>
+                                <xsl:attribute name="class">
+                                    <xsl:value-of select="$vrfName" />
+                                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                                </xsl:attribute>
+                            <td><input type="radio" name="check" id="check"></input></td>
+                            <td>
+                                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                                <xsl:value-of select="$dev" />
+                            </td>
+                            <td>ipv4 (1)</td>
+                            <td>MPLS-labeled VPN address (128)</td>
+                            <td>
+                                <xsl:value-of select="$vrfName"/>
+                            </td>
+                            <td >
+                                <xsl:if test="x:net[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:net" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:address[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:address" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:metric[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:metric" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:tag[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:tag" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:description[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:description" />
+                            </td>
+                            </tr>
+                            </xsl:for-each>
+                        <xsl:for-each select="x:ipv4/x:unicast/x:routes-if">
+                            <tr class="">
+                                <xsl:attribute name="id">
+                                    <xsl:value-of select="$dev" />
+                                </xsl:attribute>
+                                <xsl:attribute name="class">
+                                    <xsl:value-of select="$vrfName" />
+                                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                                </xsl:attribute>
+                            <td><input type="radio" name="check" id="check"></input></td>
+                            <td>
+                                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                                <xsl:value-of select="$dev" />
+                            </td>
+                            <td>ipv4 (1)</td>
+                            <td>MPLS-labeled VPN address (128)</td>
+                            <td>
+                                <xsl:value-of select="$vrfName"/>
+                            </td>
+                            <td >
+                                <xsl:if test="x:net[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:net" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:interface[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:interface" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:metric[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:metric" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:tag[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:tag" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:description[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:description" />
+                            </td>
+                            </tr>
+                            </xsl:for-each>
+
+                        <xsl:for-each select="x:ipv6/x:unicast/x:routes-ip">
+                            <tr class="">
+                                <xsl:attribute name="id">
+                                    <xsl:value-of select="$dev" />
+                                </xsl:attribute>
+                                <xsl:attribute name="class">
+                                    <xsl:value-of select="$vrfName" />
+                                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                                </xsl:attribute>
+                            <td><input type="radio" name="check" id="check"></input></td>
+                            <td>
+                                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                                <xsl:value-of select="$dev" />
+                            </td>
+                            <td>ipv6 (2)</td>
+                            <td>MPLS-labeled VPN address (128)</td>
+                            <td>
+                                <xsl:value-of select="$vrfName"/>
+                            </td>
+                            <td >
+                                <xsl:if test="x:net[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:net" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:address[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:address" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:metric[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:metric" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:tag[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:tag" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:description[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:description" />
+                            </td>
+                            </tr>
+                            </xsl:for-each>
+                        <xsl:for-each select="x:ipv6/x:unicast/x:routes-if">
+                            <tr class="">
+                                <xsl:attribute name="id">
+                                    <xsl:value-of select="$dev" />
+                                </xsl:attribute>
+                                <xsl:attribute name="class">
+                                    <xsl:value-of select="$vrfName" />
+                                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                                </xsl:attribute>
+                            <td><input type="radio" name="check" id="check"></input></td>
+                            <td>
+                                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                                <xsl:value-of select="$dev" />
+                            </td>
+                            <td>ipv6 (2)</td>
+                            <td>MPLS-labeled VPN address (128)</td>
+                            <td>
+                                <xsl:value-of select="$vrfName"/>
+                            </td>
+                            <td >
+                                <xsl:if test="x:net[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:net" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:interface[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:interface" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:metric[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:metric" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:tag[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:tag" />
+                            </td>
+                            <td >
+                                <xsl:if test="x:description[(@refcounter)]">
+                                        <xsl:attribute name="class">
+                                            refcounter
+                                        </xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="x:description" />
+                            </td>
+                            </tr>
+                            </xsl:for-each>
+                    </xsl:for-each>
+
+                </xsl:for-each>
+        </xsl:for-each>
+
+        <!-- ios -->
+
+        <xsl:for-each select="ncs:config/i:ip/i:route">
+
+            <xsl:for-each select="i:ip-route-forwarding-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv4 (1)</td>
+                <td>unicast (1)</td>
+                <td></td>
+                    <td >
+                        <xsl:if test="i:prefix[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:prefix"/>/<xsl:value-of select="i:mask"/>
+                    </td>
+                    <td >
+                        <xsl:if test="i:forwarding-address[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:forwarding-address" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:metric[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:metric" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+            <xsl:for-each select="i:ip-route-interface-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv4 (1)</td>
+                <td>unicast (1)</td>
+                <td></td>
+                    <td >
+                        <xsl:if test="i:prefix[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:prefix" />/<xsl:value-of select="i:mask" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:interface[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:interface" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:metric[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:metric" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+
+        </xsl:for-each>
+
+        <xsl:for-each select="ncs:config/i:ipv6/i:route/i:no-vrf">
+
+            <xsl:for-each select="i:ipv6-route-destination-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                    <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv6 (2)</td>
+                <td>unicast (1)</td>
+                <td></td>
+                    <td >
+                        <xsl:if test="i:prefix[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:prefix" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:destination[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:destination" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:distance[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:distance" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+            <xsl:for-each select="i:ipv6-route-interface-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv6 (2)</td>
+                <td>unicast (1)</td>
+                <td></td>
+                    <td >
+                        <xsl:if test="i:prefix[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:prefix" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:interface[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:interface" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:distance[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:distance" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:tag" />
+                    </td>
+                    <td > 
+                        <xsl:if test="i:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+
+        </xsl:for-each>
+
+        <xsl:for-each select="ncs:config/i:ip/i:route/i:vrf">
+            <xsl:variable name="vrfName" select="i:name" />
+
+            <xsl:for-each select="i:ip-route-forwarding-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="$vrfName" />
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv4 (1)</td>
+                <td>MPLS-labeled VPN address (128)</td>
+                <td><xsl:value-of select="$vrfName" /></td>
+                    <td >
+                        <xsl:if test="i:prefix[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:prefix" />/<xsl:value-of select="i:mask" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:forwarding-address[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:forwarding-address" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:metric[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:metric" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+            <xsl:for-each select="i:ip-route-interface-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="$vrfName" />
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv4 (1)</td>
+                <td>MPLS-labeled VPN address (128)</td>
+                <td><xsl:value-of select="$vrfName" /></td>
+                    <td >
+                        <xsl:if test="i:prefix[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:prefix" />/<xsl:value-of select="i:mask" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:interface[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:interface" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:metric[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:metric" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+
+        </xsl:for-each>
+
+        <xsl:for-each select="ncs:config/i:ipv6/i:route/i:vrf">
+            <xsl:variable name="vrfName" select="i:name" />
+
+            <xsl:for-each select="i:ipv6-route-destination-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="$vrfName" />
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv6 (2)</td>
+                <td>MPLS-labeled VPN address (128)</td>
+                <td><xsl:value-of select="$vrfName" /></td>
+                    <td >
+                        <xsl:if test="i:prefix[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:prefix" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:destination[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:destination" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:distance[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:distance" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+            <xsl:for-each select="i:ipv6-route-interface-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="$vrfName" />
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv6 (2)</td>
+                <td>MPLS-labeled VPN address (128)</td>
+                <td><xsl:value-of select="$vrfName" /></td>
+                    <td >
+                        <xsl:if test="i:prefix[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:prefix" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:interface[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:interface" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:distance[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:distance" />
+                    </td>
+                    <td >
+                        <xsl:if test="i:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:tag" />
+                    </td>
+                    <td > 
+                        <xsl:if test="i:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="i:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+
+        </xsl:for-each>
+
+        <!-- nx -->
+
+        <xsl:for-each select="ncs:config/n:ip/n:route">
+
+            <xsl:for-each select="n:ip-route-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv4 (1)</td>
+                <td>unicast (1)</td>
+                <td></td>
+                    <td >
+                        <xsl:if test="n:prefix-mask[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:prefix-mask"/>
+                    </td>
+                    <td >
+                        <xsl:if test="n:next-hop[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:next-hop" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:preference[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:preference" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+            <xsl:for-each select="n:ip-route-interface-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv4 (1)</td>
+                <td>unicast (1)</td>
+                <td></td>
+                    <td >
+                        <xsl:if test="n:prefix-mask[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:prefix-mask" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:interface[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:interface" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:preference[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:preference" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+
+        </xsl:for-each>
+
+        <xsl:for-each select="ncs:config/n:ipv6/n:route">
+
+            <xsl:for-each select="n:ipv6-route-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv6 (2)</td>
+                <td>unicast (1)</td>
+                <td></td>
+                    <td >
+                        <xsl:if test="n:prefix-mask[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:prefix-mask"/>
+                    </td>
+                    <td >
+                        <xsl:if test="n:next-hop[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:next-hop" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:preference[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:preference" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+            <xsl:for-each select="n:ipv6-route-list">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv6 (2)</td>
+                <td>unicast (1)</td>
+                <td></td>
+                    <td >
+                        <xsl:if test="n:prefix-mask[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:prefix-mask" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:interface[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:interface" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:preference[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:preference" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:tag[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:tag" />
+                    </td>
+                    <td >
+                        <xsl:if test="n:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="n:name" />
+                    </td>
+                </tr>
+
+            </xsl:for-each>
+
+        </xsl:for-each>
+
+        <xsl:for-each select="ncs:config/n:vrf/n:context">
+            <xsl:variable name="vrfName" select="n:id" />
+
+            <xsl:for-each select="n:ip/n:route">
+
+                <xsl:for-each select="n:ip-route-list">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                    <td><input type="radio" name="check" id="check"></input></td>
+                    <td>
+                        <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                        <xsl:value-of select="$dev" />
+                    </td>
+                    <td>ipv4 (1)</td>
+                    <td>MPLS-labeled VPN address (128)</td>
+                    <td><xsl:value-of select="$vrfName"/></td>
+                        <td >
+                            <xsl:if test="n:prefix-mask[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:prefix-mask"/>
+                        </td>
+                        <td >
+                            <xsl:if test="n:next-hop[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:next-hop" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:preference[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:preference" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:tag[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:tag" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:name[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:name" />
+                        </td>
+                    </tr>
+
+                </xsl:for-each>
+                <xsl:for-each select="n:ip-route-interface-list">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                    <td><input type="radio" name="check" id="check"></input></td>
+                    <td>
+                        <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                        <xsl:value-of select="$dev" />
+                    </td>
+                    <td>ipv4 (1)</td>
+                    <td>MPLS-labeled VPN address (128)</td>
+                    <td><xsl:value-of select="$vrfName"/></td>
+                        <td >
+                            <xsl:if test="n:prefix-mask[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:prefix-mask" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:interface[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:interface" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:preference[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:preference" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:tag[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:tag" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:name[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:name" />
+                        </td>
+                    </tr>
+
+                </xsl:for-each>
+
+            </xsl:for-each>
+
+            <xsl:for-each select="n:ipv6/n:route">
+
+                <xsl:for-each select="n:ipv6-route-list">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                    <td><input type="radio" name="check" id="check"></input></td>
+                    <td>
+                        <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                        <xsl:value-of select="$dev" />
+                    </td>
+                    <td>ipv6 (2)</td>
+                    <td>MPLS-labeled VPN address (128)</td>
+                    <td><xsl:value-of select="$vrfName"/></td>
+                        <td >
+                            <xsl:if test="n:prefix-mask[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:prefix-mask"/>
+                        </td>
+                        <td >
+                            <xsl:if test="n:next-hop[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:next-hop" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:preference[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:preference" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:tag[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:tag" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:name[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:name" />
+                        </td>
+                    </tr>
+
+                </xsl:for-each>
+                <xsl:for-each select="n:ipv6-route-list">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                    <td><input type="radio" name="check" id="check"></input></td>
+                    <td>
+                        <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                        <xsl:value-of select="$dev" />
+                    </td>
+                    <td>ipv6 (2)</td>
+                    <td>MPLS-labeled VPN address (128)</td>
+                    <td><xsl:value-of select="$vrfName"/></td>
+                        <td >
+                            <xsl:if test="n:prefix-mask[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:prefix-mask" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:interface[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:interface" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:preference[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:preference" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:tag[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:tag" />
+                        </td>
+                        <td >
+                            <xsl:if test="n:name[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="n:name" />
+                        </td>
+                    </tr>
+
+                </xsl:for-each>
+
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <!-- junos -->
+
+        <xsl:for-each select="ncs:config/j:configuration">
+
+            <xsl:for-each select="j:routing-options/j:static/j:route">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">junos-juniper</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv4 (1)</td>
+                <td>unicast (1)</td>
+                <td></td>   
+                    <td >
+                        <xsl:if test="j:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="j:name"/>
+                    </td>
+                    <td >
+                        <xsl:if test="j:next-hop[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="j:next-hop" />
+                    </td>
+                    <td >
+                        <xsl:if test="j:preference/j:metric-value[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="j:preference/j:metric-value" />
+                    </td>
+                    <td >
+                        <xsl:if test="j:tag/j:metric-value[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="j:tag/j:metric-value" />
+                    </td>
+                    <td ></td>
+                </tr>
+
+            </xsl:for-each>
+
+            <xsl:for-each select="j:routing-options/j:rib/j:static/j:route">
+                <tr class="">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="$dev" />
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                    </xsl:attribute>
+                <td><input type="radio" name="check" id="check"></input></td>
+                <td>
+                    <xsl:attribute name="id">junos-juniper</xsl:attribute>
+                    <xsl:value-of select="$dev" />
+                </td>
+                <td>ipv6 (2)</td>
+                <td>unicast (1)</td>
+                <td></td>   
+                    <td >
+                        <xsl:if test="j:name[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="j:name"/>
+                    </td>
+                    <td >
+                        <xsl:if test="j:next-hop[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="j:next-hop" />
+                    </td>
+                    <td >
+                        <xsl:if test="j:preference/j:metric-value[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="j:preference/j:metric-value" />
+                    </td>
+                    <td >
+                        <xsl:if test="j:tag/j:metric-value[(@refcounter)]">
+                                <xsl:attribute name="class">
+                                    refcounter
+                                </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="j:tag/j:metric-value" />
+                    </td>
+                    <td ></td>
+                </tr>
+
+            </xsl:for-each>
+
+            <xsl:for-each select="j:routing-instances/j:instance">
+                <xsl:variable name="vrfName" select="j:name" />
+
+                <xsl:for-each select="j:routing-options/j:static/j:route">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                    <td><input type="radio" name="check" id="check"></input></td>
+                    <td>
+                        <xsl:attribute name="id">junos-juniper</xsl:attribute>
+                        <xsl:value-of select="$dev" />
+                    </td>
+                    <td>ipv4 (1)</td>
+                    <td>MPLS-labeled VPN address (128)</td>
+                    <td><xsl:value-of select="$vrfName"/></td>   
+                        <td >
+                            <xsl:if test="j:name[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="j:name"/>
+                        </td>
+                        <td >
+                            <xsl:if test="j:next-hop[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="j:next-hop" />
+                        </td>
+                        <td >
+                            <xsl:if test="j:preference/j:metric-value[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="j:preference/j:metric-value" />
+                        </td>
+                        <td >
+                            <xsl:if test="j:tag/j:metric-value[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="j:tag/j:metric-value" />
+                        </td>
+                        <td ></td>
+                    </tr>
+
+                </xsl:for-each>
+
+                <xsl:for-each select="j:routing-options/j:rib/j:static/j:route">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                    <td><input type="radio" name="check" id="check"></input></td>
+                    <td>
+                        <xsl:attribute name="id">junos-juniper</xsl:attribute>
+                        <xsl:value-of select="$dev" />
+                    </td>
+                    <td>ipv6 (2)</td>
+                    <td>MPLS-labeled VPN address (128)</td>
+                    <td><xsl:value-of select="$vrfName"/></td>    
+                        <td >
+                            <xsl:if test="j:name[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="j:name"/>
+                        </td>
+                        <td >
+                            <xsl:if test="j:next-hop[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="j:next-hop" />
+                        </td>
+                        <td >
+                            <xsl:if test="j:preference/j:metric-value[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="j:preference/j:metric-value" />
+                        </td>
+                        <td >
+                            <xsl:if test="j:tag/j:metric-value[(@refcounter)]">
+                                    <xsl:attribute name="class">
+                                        refcounter
+                                    </xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="j:tag/j:metric-value" />
+                        </td>
+                        <td ></td>
+                    </tr>
+
+                </xsl:for-each>
+            </xsl:for-each>
+
+        </xsl:for-each>
+
+</xsl:for-each>
+
+
+
+</tbody>
+</table>
+
+</xsl:template>
+</xsl:stylesheet>
