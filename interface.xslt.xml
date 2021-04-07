@@ -31,7 +31,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="x:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -71,7 +71,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="x:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -111,7 +111,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="x:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -151,7 +151,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="x:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -191,7 +191,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="x:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -235,7 +235,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="x:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -279,7 +279,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="x:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -325,7 +325,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="i:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -369,7 +369,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="i:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -413,7 +413,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="i:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -457,7 +457,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="i:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -501,7 +501,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="i:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -545,7 +545,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="i:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -591,7 +591,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="n:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
@@ -635,7 +635,7 @@
                 </xsl:attribute>
                 <xsl:attribute name="class">
                     <xsl:value-of select="n:vrf" />
-                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                    <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
                 </xsl:attribute>
             <td><input type="radio" name="check" id="check"></input></td>
             <td>
