@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cisco-ios-xr="http://tail-f.com/ned/cisco-ios-xr" xmlns:ncs="http://tail-f.com/ns/ncs" xmlns:x="http://tail-f.com/ned/cisco-ios-xr" xmlns:i="urn:ios" xmlns:n="http://tail-f.com/ned/cisco-nx" version="1.0">
+ <xsl:template match="/">
+  <table border="1">
+   <thead>
+   <tr bgcolor="#9acd32">
+    <th></th>
+    <th style="text-align:left" id="device">device</th>
+    <th style="text-align:left" id="interface">interface</th>
+    <th style="text-align:left" id="mod">mod</th>
+    <th style="text-align:left" id="id">fullID</th>
+    <th style="text-align:left" id="sub">sub</th>
+    <th style="text-align:left" id="enc">enc</th>
+    <th style="text-align:left" id="description">description</th>
+    <th style="text-align:left" id="vrf">vrf</th>
+    <th style="text-align:left" id="ipv4">ipv4</th>
+    <th style="text-align:left" id="ipv4-mask">ipv4-mask</th>
+    <th style="text-align:left" id="ipv6">ipv6</th>
+   </tr>  
+   </thead>
+
+    <tbody>
+   <xsl:for-each select="//*/ncs:devices/ncs:device">
+        <xsl:variable name="dev" select="ncs:name" />
+
+        <!-- xr -->
+        <xsl:for-each select="ncs:config/x:interface/x:Loopback">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="x:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>Loopback</td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>-</td>
+            <td>-</td>
+            <td>
+                <xsl:value-of select="x:description" />
+            </td>
+            <td>
+                <xsl:value-of select="x:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:ip" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv6/x:address/x:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/x:interface/x:GigabitEthernet">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="x:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>GigabitEthernet</td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>-</td>
+            <td>-</td>
+            <td>
+                <xsl:value-of select="x:description" />
+            </td>
+            <td>
+                <xsl:value-of select="x:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:ip" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv6/x:address/x:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/x:interface/x:TenGigE">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="x:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>TenGigE</td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>-</td>
+            <td>-</td>
+            <td>
+                <xsl:value-of select="x:description" />
+            </td>
+            <td>
+                <xsl:value-of select="x:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:ip" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv6/x:address/x:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/x:interface/x:Bundle-Ether">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="x:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>Bundle-Ether</td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>-</td>
+            <td>-</td>
+            <td>
+                <xsl:value-of select="x:description" />
+            </td>
+            <td>
+                <xsl:value-of select="x:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:ip" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv6/x:address/x:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/x:interface/x:GigabitEthernet-subinterface/x:GigabitEthernet">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="x:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>GigabitEthernet</td>
+            <td>
+                <xsl:value-of select="substring-before(cisco-ios-xr:id, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(cisco-ios-xr:id, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="x:encapsulation/x:dot1q/x:vlan-id" />
+            </td>
+            <td>
+                <xsl:value-of select="x:description" />
+            </td>
+            <td>
+                <xsl:value-of select="x:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:ip" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv6/x:address/x:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/x:interface/x:TenGigE-subinterface/x:TenGigE">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="x:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>TenGigE</td>
+            <td>
+                <xsl:value-of select="substring-before(cisco-ios-xr:id, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(cisco-ios-xr:id, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="x:encapsulation/x:dot1q/x:vlan-id" />
+            </td>
+            <td>
+                <xsl:value-of select="x:description" />
+            </td>
+            <td>
+                <xsl:value-of select="x:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:ip" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv6/x:address/x:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/x:interface/x:Bundle-Ether-subinterface/x:Bundle-Ether">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="x:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>Bundle-Ether</td>
+            <td>
+                <xsl:value-of select="substring-before(cisco-ios-xr:id, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="x:id" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(cisco-ios-xr:id, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="x:encapsulation/x:dot1q/x:vlan-id" />
+            </td>
+            <td>
+                <xsl:value-of select="x:description" />
+            </td>
+            <td>
+                <xsl:value-of select="x:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:ip" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv4/x:address/x:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="x:ipv6/x:address/x:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+
+        <!-- ios -->
+        <xsl:for-each select="ncs:config/i:interface/i:Loopback">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="i:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>Loopback</td>
+            <td>
+                <xsl:value-of select="i:name" />
+            </td>
+            <td>
+                <xsl:value-of select="i:name" />
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                <xsl:value-of select="i:description" />
+            </td>
+            <td>
+                <xsl:value-of select="i:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:address" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ipv6/i:address/i:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/i:interface/i:Ethernet">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="i:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>Ethernet</td>
+            <td>
+                <xsl:value-of select="substring-before(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:name" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:encapsulation/i:dot1Q/i:vlan-id" />
+            </td>
+            <td>
+                <xsl:value-of select="i:description" />
+            </td>
+            <td>
+                <xsl:value-of select="i:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:address" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ipv6/i:address/i:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/i:interface/i:FastEthernet">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="i:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>FastEthernet</td>
+            <td>
+                <xsl:value-of select="substring-before(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:name" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:encapsulation/i:dot1Q/i:vlan-id" />
+            </td>
+            <td>
+                <xsl:value-of select="i:description" />
+            </td>
+            <td>
+                <xsl:value-of select="i:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:address" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ipv6/i:address/i:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/i:interface/i:GigabitEthernet">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="i:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>GigabitEthernet</td>
+            <td>
+                <xsl:value-of select="substring-before(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:name" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:encapsulation/i:dot1Q/i:vlan-id" />
+            </td>
+            <td>
+                <xsl:value-of select="i:description" />
+            </td>
+            <td>
+                <xsl:value-of select="i:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:address" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ipv6/i:address/i:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/i:interface/i:TenGigabitEthernet">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="i:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>TenGigabitEthernet</td>
+            <td>
+                <xsl:value-of select="substring-before(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:name" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:encapsulation/i:dot1Q/i:vlan-id" />
+            </td>
+            <td>
+                <xsl:value-of select="i:description" />
+            </td>
+            <td>
+                <xsl:value-of select="i:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:address" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ipv6/i:address/i:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/i:interface/i:Port-Channel">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="i:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>Port-Channel</td>
+            <td>
+                <xsl:value-of select="substring-before(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:name" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(i:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="i:encapsulation/i:dot1Q/i:vlan-id" />
+            </td>
+            <td>
+                <xsl:value-of select="i:description" />
+            </td>
+            <td>
+                <xsl:value-of select="i:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:address" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ip/i:address/i:primary/i:mask" />
+            </td>
+            <td>
+                <xsl:value-of select="i:ipv6/i:address/i:prefix-list" />
+            </td>
+            </tr>
+        </xsl:for-each>
+
+        <!-- nx -->
+        <xsl:for-each select="ncs:config/n:interface/n:loopback">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="n:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>loopback</td>
+            <td>
+                <xsl:value-of select="n:name" />
+            </td>
+            <td>
+                <xsl:value-of select="n:name" />
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                <xsl:value-of select="n:description" />
+            </td>
+            <td>
+                <xsl:value-of select="n:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-before(n:ip/n:address/n:ipaddr, '/')" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(n:ip/n:address/n:ipaddr, '/')" />
+            </td>
+            <td>
+                <xsl:value-of select="n:ipv6/n:address/n:addresses" />
+            </td>
+            </tr>
+        </xsl:for-each>
+        <xsl:for-each select="ncs:config/n:interface/n:Ethernet">
+            <tr class="">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$dev" />
+                </xsl:attribute>
+                <xsl:attribute name="class">
+                    <xsl:value-of select="n:vrf" />
+                    <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if>
+                </xsl:attribute>
+            <td><input type="radio" name="check" id="check"></input></td>
+            <td>
+                <xsl:attribute name="id">cisco-nx</xsl:attribute>
+                <xsl:value-of select="$dev" />
+            </td>
+            <td>Ethernet</td>
+            <td>
+                <xsl:value-of select="substring-before(n:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="n:name" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(n:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(n:name, '.')" />
+            </td>
+            <td>
+                <xsl:value-of select="n:description" />
+            </td>
+            <td>
+                <xsl:value-of select="n:vrf" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-before(n:ip/n:address/n:ipaddr, '/')" />
+            </td>
+            <td>
+                <xsl:value-of select="substring-after(n:ip/n:address/n:ipaddr, '/')" />
+            </td>
+            <td>
+                <xsl:value-of select="n:ipv6/n:address/n:addresses" />
+            </td>
+            </tr>
+        </xsl:for-each>
+
+    </xsl:for-each>
+    </tbody>
+    </table>
+ </xsl:template>
+</xsl:stylesheet>
