@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cisco-ios-xr="http://tail-f.com/ned/cisco-ios-xr" xmlns:ncs="http://tail-f.com/ns/ncs" xmlns:x="http://tail-f.com/ned/cisco-ios-xr" xmlns:i="urn:ios" xmlns:n="http://tail-f.com/ned/cisco-nx" version="1.0">
+ <xsl:template match="/">
+  <table border="1">
+   <tr bgcolor="#9acd32">
+    <th></th>
+    <th style="text-align:left" id="device">device</th>
+    <th style="text-align:left" id="vrf">vrf</th>
+    <th style="text-align:left" id="afi">afi</th>
+    <th style="text-align:left" id="safi">safi</th>
+    <th style="text-align:left" id="import">import</th>
+    <th style="text-align:left" id="export">export</th>
+   </tr>  
+
+   <xsl:for-each select="//*/ncs:devices/ncs:device">
+        <xsl:variable name="dev" select="ncs:name" />
+
+    <!-- xr -->
+     <xsl:for-each select="ncs:config/x:vrf/x:vrf-list">
+        <xsl:variable name="vrfName" select="x:name" />
+
+        <xsl:for-each select="x:address-family">
+            <!-- <xsl:variable name="af" select="" /> -->
+            <!-- <xsl:variable name="pos" select="position()" /> -->
+
+            <xsl:for-each select="x:ipv4/x:unicast">
+                <xsl:for-each select="x:import/x:route-target/x:address-list">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                        <td><input type="radio" name="check" id="check"></input></td>
+                        <td>
+                            <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                            <xsl:value-of select="$dev" />
+                        </td>
+                        <td><xsl:value-of select="$vrfName" /></td>
+                        <td>ipv4 (1)</td>
+                        <td>unicast (1)</td>
+                        <td>
+                            <xsl:value-of select="x:name" />
+                        </td>
+                        <td></td>
+                    </tr>   
+                </xsl:for-each>
+                <xsl:for-each select="x:export/x:route-target/x:address-list">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                        <td><input type="radio" name="check" id="check"></input></td>
+                        <td>
+                            <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                            <xsl:value-of select="$dev" />
+                        </td>
+                        <td><xsl:value-of select="$vrfName" /></td>
+                        <td>ipv4 (1)</td>
+                        <td>unicast (1)</td>
+                        <td></td>
+                        <td>
+                            <xsl:value-of select="x:name" />
+                        </td>
+                    </tr>   
+                </xsl:for-each>
+            </xsl:for-each>
+
+            <xsl:for-each select="x:ipv6/x:unicast">
+                <xsl:for-each select="x:import/x:route-target/x:address-list">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                        <td><input type="radio" name="check" id="check"></input></td>
+                        <td>
+                            <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                            <xsl:value-of select="$dev" />
+                        </td>
+                        <td><xsl:value-of select="$vrfName" /></td>
+                        <td>ipv6 (2)</td>
+                        <td>unicast (1)</td>
+                        <td>
+                            <xsl:value-of select="x:name" />
+                        </td>
+                        <td></td>
+                    </tr>   
+                </xsl:for-each>
+                <xsl:for-each select="x:export/x:route-target/x:address-list">
+                    <tr class="">
+                        <xsl:attribute name="id">
+                            <xsl:value-of select="$dev" />
+                        </xsl:attribute>
+                        <xsl:attribute name="class">
+                            <xsl:value-of select="$vrfName" />
+                            <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                        </xsl:attribute>
+                        <td><input type="radio" name="check" id="check"></input></td>
+                        <td>
+                            <xsl:attribute name="id">cisco-iosxr</xsl:attribute>
+                            <xsl:value-of select="$dev" />
+                        </td>
+                        <td><xsl:value-of select="$vrfName" /></td>
+                        <td>ipv6 (2)</td>
+                        <td>unicast (1)</td>
+                        <td></td>
+                        <td>
+                            <xsl:value-of select="x:name" />
+                        </td>
+                    </tr>   
+                </xsl:for-each>
+            </xsl:for-each>
+
+
+        </xsl:for-each>
+
+     </xsl:for-each>
+    <!-- ios -->
+
+    <xsl:for-each select="ncs:config/i:vrf/i:definition">
+        <xsl:variable name="vrfName" select="i:name" />
+
+            <xsl:for-each select="i:address-family">
+                <xsl:for-each select="i:ipv4/i:route-target">
+                    <xsl:for-each select="i:export">
+                        <tr class="">
+                            <xsl:attribute name="id">
+                                <xsl:value-of select="$dev" />
+                            </xsl:attribute>
+                            <xsl:attribute name="class">
+                                <xsl:value-of select="$vrfName" />
+                                <!-- <xsl:if test=".[(@refcounter)]"> refcounter</xsl:if> -->  
+                            </xsl:attribute>
+                            <td><input type="radio" name="check" id="check"></input></td>
+                            <td>
+                                <xsl:attribute name="id">cisco-ios</xsl:attribute>
+                                <xsl:value-of select="$dev" />
+                            </td>
+                            <td><xsl:value-of select="$vrfName" /></td>
+                            <td>ipv4 (1)</td>
+                            <td>unicast (1)</td>
+                            <td>
+                                <xsl:value-of select="i:asn-ip" />
+                            </td>
+                            <td></td>
+                        </tr>   
+                    </xsl:for-each> 
+                </xsl:for-each> 
+            </xsl:for-each> 
+    </xsl:for-each> 
+
+    <!-- nx -->
+
+   </xsl:for-each>
+
+  </table>
+
+ </xsl:template>
+</xsl:stylesheet>
